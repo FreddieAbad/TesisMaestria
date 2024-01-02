@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Carga de Archivos</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #151940;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .container img {
+            width: 200px;
+            height: 200px;
+            display: block;
+            margin: 0 auto;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-230%);
+            z-index: -1;
+        }
+
+        h1 {
+            color: #151940;
+            margin-top: 10px;
+        }
+
+        h2 {
+            color: #151940;
+            margin-top: 10px;
+            font-weight: 250;
+            font-size: 18px;
+
+        }
+
+        form {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        form select,
+        form input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+            color: #7F8192;
+            background-color: #F5F6FA;
+            border: none;
+
+        }
+
+        button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #314BCE;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+            width: 332px;
+            height: 45px;
+            box-shadow: 0 4px 8px rgba(49, 75, 206, 0.25);
+
+        }
+
+        .login-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-section a {
+            color: #314BCE;
+            text-decoration: none;
+        }
+
+        input {
+            border: none;
+            background-color: #F5F6FA;
+            padding: 8px;
+            box-sizing: border-box;
+            width: 280px;
+            height: 45px;
+            border-radius: 8px;
+
+        }
+
+        input::placeholder {
+            font-family: 'Poppins', sans-serif;
+            color: #7F8192;
+        }
+
+        #cargaPanel {
+            margin: 0;
+            padding: 0;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            height: 40vh;
+            background-color: #F5F6FA;
+            color: #151940;
+            font-family: 'Poppins', sans-serif;
+        }
+
+        .custom-div {
+            width: 150px;
+            height: 234px;
+            background-color: #F5F6FA;
+            border-radius: 10px;
+            position: relative;
+        }
+
+        .custom-button {
+            width: 99px;
+            height: 105px;
+            position: relative;
+            overflow: hidden;
+            border-radius: 10px;
+            background-color: #D1D8F5;
+            margin-bottom: 10px;
+        }
+
+        .custom-button input[type="file"] {
+            opacity: 0;
+            width: 100%;
+            height: 100%;
+            position: absolute;
+            top: 0;
+            left: 0;
+            cursor: pointer;
+        }
+
+        .custom-button img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .custom-button-text {
+            font-size: 14px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <h1>Carga de Archivos</h1>
+        <h2>Por favor, ingrese detalles de su Orden y adjunte la misma.</h2>
+
+      
+        <form>
+            <div class="column" id="cargaPanel">
+                <div class="container">
+                    <div class="custom-button">
+                        <input type="file" id="fileInput" />
+                        <img src="load.png" alt="LOGO">
+                    </div>
+                    <p class="custom-button-text">Subir Archivo</p>
+                </div>
+            </div>
+            <div class="column" style="margin-left: 20%;">
+                <input type="text" placeholder="Ingresa un nombre">
+                <input type="text" placeholder="Ingresa una descripcion">
+                <select>
+                    <option value="pais1">Selecciona una empresa de carga</option>
+                    <option value="pais1">País 1</option>
+                    <option value="pais2">País 2</option>
+                </select>
+
+                <input id="fechaInput" type="text" placeholder="Fecha de Carga" readonly>
+            </div>
+        </form>
+        <br><br><br>
+        <button>Cargar</button>
+    </div>
+    <script>
+        document.getElementById('fechaInput').value = 'Fecha de carga: ' + obtenerFechaActual();
+
+        function obtenerFechaActual() {
+            const fecha = new Date();
+            const dia = agregarCeroDelante(fecha.getDate());
+            const mes = agregarCeroDelante(fecha.getMonth() + 1);
+            const anio = fecha.getFullYear();
+            return `${dia}/${mes}/${anio}`;
+        }
+
+        function agregarCeroDelante(numero) {
+            return numero < 10 ? '0' + numero : numero;
+        }
+    </script>
+</body>
+
+</html>

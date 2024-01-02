@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro</title>
+    <link href="https://fonts.googleapis.com/css?family=Poppins&display=swap" rel="stylesheet">
+    <link rel="icon" href="favicon.png" type="image/x-icon">
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #ffffff;
+            color: #151940;
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .container img {
+            width: 200px;
+            height: 200px;
+            display: block;
+            margin: 0 auto;
+            position: absolute;
+            top: 0;
+            left: 50%;
+            transform: translateX(-230%);
+            z-index: -1;
+        }
+
+        h1 {
+            color: #151940;
+            margin-top: 10px;
+        }
+
+        h2 {
+            color: #151940;
+            margin-top: 10px;
+            font-weight: 250;
+            font-size: 18px;
+
+        }
+
+        form {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 20px;
+        }
+
+        form label {
+            display: block;
+            margin-bottom: 5px;
+            font-size: 14px;
+        }
+
+        form select,
+        form input {
+            width: 100%;
+            padding: 8px;
+            margin-bottom: 10px;
+            font-family: 'Poppins', sans-serif;
+            color: #7F8192;
+            background-color: #F5F6FA;
+            border: none;
+
+        }
+
+        button {
+            font-family: 'Poppins', sans-serif;
+            background-color: #FF897E;
+            color: #ffffff;
+            padding: 10px 20px;
+            border: none;
+            cursor: pointer;
+            display: block;
+            margin: 0 auto;
+            border-radius: 8px;
+            width: 332px;
+            height: 45px;
+            box-shadow: 0 4px 8px rgba(255, 135, 126, 0.25);
+
+        }
+
+        .login-section {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .login-section a {
+            color: #314BCE;
+            text-decoration: none;
+        }
+
+        form input {
+            border: none;
+            background-color: #F5F6FA;
+            padding: 8px;
+            box-sizing: border-box;
+            width: 280px;
+            height: 45px;
+            border-radius: 8px;
+
+        }
+
+        form input::placeholder {
+            font-family: 'Poppins', sans-serif;
+            color: #7F8192;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container">
+        <img src="logo_registrar.png" alt="Logo">
+        <br>
+        <br>
+        <h1>REGISTRAR</h1>
+
+        <h2>Ingresa tu número de teléfono y ubicación para que podamos verificarlo.</h2>
+
+        <form>
+            <div class="column" style="margin-right: 3%;">
+                <select>
+                    <option value="pais1">Ingresa tu ubicación</option>
+                    <option value="pais1">País 1</option>
+                    <option value="pais2">País 2</option>
+                </select>
+
+                <input type="text" placeholder="Ingresa tu número telefónico">
+            </div>
+
+            <div class="column">
+                <input type="text" placeholder="Ingresa tu nombre">
+
+                <input type="email" placeholder="Ingresa tu correo">
+
+                <input type="password" placeholder="Ingresa tu password">
+
+                <input type="password" placeholder="Ingresa nuevamente tu password">
+            </div>
+        </form>
+
+        <button>Guardar</button>
+
+        <div class="login-section">
+            <p>¿Ya tienes una cuenta? <a href="login.html">LOGIN</a></p>
+        </div>
+    </div>
+</body>
+
+</html>
