@@ -1,0 +1,58 @@
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-6">
+      <h2>Escaneo de Amenazas</h2>
+      <form (ngSubmit)="escanearAmenazas()">
+        <div class="mb-3">
+          <label for="url" class="form-label">Escaneo de URL:</label>
+          <input type="text" id="url" name="url" [(ngModel)]="url" class="form-control" required>
+        </div>
+        <button type="submit" class="btn btn-primary">Escanear</button>
+      </form>
+    </div>
+  </div>
+
+  <div class="container">
+    <div class="row justify-content-center mt-4">
+
+      <div class="row justify-content-center md-4" *ngIf="threatLists" id="listadoNavegacion">
+        <div class="col-md-6">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Resultado de Amenazas Google Safe Browsing</h5>
+              <ul class="list-group">
+                <li class="list-group-item" *ngFor="let list of threatLists">
+                  <p>Plataforma: {{ list.platformType }}</p>
+                  <p>Tipo de entrada de amenaza: {{ list.threatEntryType }}</p>
+                  <p>Tipo de amenaza: {{ list.threatType }}</p>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <div class="row justify-content-center md-8" id="escaneoAmenaza">
+        <div class="col-md-6" *ngIf="response">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">Resultado del escaneo Google Safe Browsing </h5>
+              <p class="card-text">URL escaneada: {{ response.url }}</p>
+              <div *ngIf="response.amenaza">
+                <div class="alert alert-danger" *ngFor="let match of response.amenaza.matches">
+                  <p>Threat Type: {{ match.threatType }}</p>
+                  <p>Threat Entry Type: {{ match.threatEntryType }}</p>
+                  <p>Cache Duration: {{ match.cacheDuration }}</p>
+                  <p>Platform Type: {{ match.platformType }}</p>
+                </div>
+              </div>
+              <div *ngIf="!response.amenaza">
+                <p class="card-text">No se encontraron amenazas.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>

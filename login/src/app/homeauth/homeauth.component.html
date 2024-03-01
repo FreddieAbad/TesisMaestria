@@ -1,0 +1,290 @@
+<div class="row" style="margin-top: 5%;">
+  <div class="col-6"></div>
+  <div class="col-1"></div>
+  <div class="col-1"></div>
+  <div class="col-2">
+    <button type="button" class="btn btn-primary" (click)="goToLoginPage()" style="align-content: center;">Login</button>
+  </div>
+  <!-- <div class="col-2">
+    <button type="button" class="btn btn-warning" (click)="goToSignUpPage()">Registrarse</button>
+  </div> -->
+</div>
+<div class="container">
+  <div class="row justify-content-center">
+    <div class="col-md-9">
+
+      <div class="container" style=" margin-top: 5%;margin-bottom: 5%;" id="seccion1ListadoAmenazas">
+        <h2 style="text-align: center;">Uso de APIs de Ciberseguridad</h2>
+        <hr>
+        <div id="consultarButton">
+          <h5>1. Resultado de Amenazas Google Safe Browsing</h5>
+          <p>
+            A continuación se consume un servicio de Google Safe Browsing:
+            <a
+              href="https://developers.google.com/safe-browsing/v4/reference/rest/v4/threatLists/list?hl=es-419"><strong>https://developers.google.com/safe-browsing/v4/reference/rest/v4/threatLists/list?hl=es-419</strong></a>
+            de enumeración las listas de amenazas de la Navegación segura que están disponibles para descargar.
+          </p>
+          <button class="btn btn-warning" (click)="listadoNavegacion()">Consultar</button>
+        </div>
+
+        <div *ngIf="threatLists" id="listadoNavegacion" style="margin-top: 5%;">
+          <ul class="list-group">
+            <li class="list-group-item" *ngFor="let list of threatLists">
+              <div class="row">
+                <div class="col-1">
+                  <ng-container *ngIf="list.platformType === 'WINDOWS'">
+                    <img src="https://cdn.icon-icons.com/icons2/2157/PNG/512/windows_logo_icon_132880.png"
+                      alt="Windows Icon" width="40" height="40">
+                  </ng-container>
+                  <ng-container *ngIf="list.platformType === 'OSX'">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/0/08/The_OS_X_Logo.svg/1280px-The_OS_X_Logo.svg.png"
+                      alt="OSX Icon" width="40" height="20">
+                  </ng-container>
+                  <ng-container *ngIf="list.platformType === 'CHROME'">
+                    <img
+                      src="data:image/png;base64,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"
+                      alt="CHROME Icon" width="30" height="20">
+                  </ng-container>
+                  <ng-container *ngIf="list.platformType === 'LINUX'">
+                    <img
+                      src="https://w7.pngwing.com/pngs/970/403/png-transparent-tux-linux-mint-logo-linux-logo-vertebrate-bird.png"
+                      alt="Linux Icon" width="40" height="30">
+                  </ng-container>
+                  <ng-container *ngIf="list.platformType === 'ANDROID'">
+                    <img
+                      src="data:image/png;base64,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"
+                      alt="ANDROID Icon" width="30" height="30">
+                  </ng-container>
+                  <ng-container *ngIf="list.platformType === 'IOS'">
+                    <img
+                      src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/ca/IOS_logo.svg/2048px-IOS_logo.svg.png"
+                      alt="IOS Icon" width="30" height="30">
+                  </ng-container>
+                </div>
+                <div class="col-11">
+                  <strong>Plataforma:</strong> {{ list.platformType }}
+                  <br>
+                  <strong>Tipo de entrada de amenaza:</strong> {{ list.threatEntryType }} ||
+                  <strong>Tipo de amenaza:</strong> {{ list.threatType }}
+                  <br>
+                </div>
+              </div>
+              <p>
+              </p>
+            </li>
+          </ul>
+        </div>
+        <hr>
+
+      </div>
+
+      <div class="container" style=" margin-top: 5%;margin-bottom: 5%;" id="seccion2EscaneoUrlGSB">
+        <h5 class="card-title">2. Resultado de Escaneo Google Safe Browsing</h5>
+        <p>
+          A continuación se consume un servicio de Google Safe Browsing:
+          <a
+            href="https://developers.google.com/safe-browsing/v4/reference/rest/v4/threatMatches/find?hl=es-419"><strong>https://developers.google.com/safe-browsing/v4/reference/rest/v4/threatMatches/find?hl=es-419</strong></a>
+          que busca las entradas de amenazas que coinciden con las listas de Navegación segura.
+
+        </p>
+        <div>
+          Links de prueba con fines educativos:
+          <ul>
+            <li>
+              https://testsafebrowsing.appspot.com/s/unwanted.html
+            </li>
+            <li>
+              https://testsafebrowsing.appspot.com/s/phishing.html
+            </li>
+            <li>
+              https://testsafebrowsing.appspot.com/s/malware.html
+            </li>
+            <li>https://www.malwaredomainlist.com/</li>
+          </ul>
+        </div>
+        <label for="url" class="form-label"><strong>Escaneo de URL:</strong></label>
+
+        <div *ngIf="response" id="escaneoAmenaza">
+          <form (ngSubmit)="escanearAmenazas()" style="margin-bottom: 5%;">
+            <div class="row">
+              <div class="col-9">
+                <div class="mb-3">
+                  <input type="text" id="url" name="url" [(ngModel)]="url" class="form-control" required>
+                </div>
+              </div>
+              <div class="col-3">
+                <button type="submit" class="btn btn-warning">Escanear</button>
+              </div>
+            </div>
+          </form>
+          <h5>Resultado del escaneo Google Safe Browsing </h5>
+          <div class="card">
+            <div class="card-body">
+              <p class="card-text">URL escaneada: {{ response.url }}</p>
+              <div *ngIf="response.amenaza">
+                <div *ngIf="response.amenaza.matches && response.amenaza.matches.length > 0">
+                  <div class="alert alert-danger" *ngFor="let match of response.amenaza.matches">
+                    <p>Threat Type: {{ match.threatType }}</p>
+                    <p>Threat Entry Type: {{ match.threatEntryType }}</p>
+                    <p>Cache Duration: {{ match.cacheDuration }}</p>
+                    <p>Platform Type: {{ match.platformType }}</p>
+                  </div>
+                </div>
+                <div *ngIf="!response.amenaza.matches || response.amenaza.matches.length === 0">
+                  <p>Threat Type: NA</p>
+                  <p>Threat Entry Type: NA</p>
+                  <p>Cache Duration: NA</p>
+                  <p>Platform Type: NA</p>
+                </div>
+                <div *ngIf="!response.amenaza">
+                  <p class="card-text">No se encontraron amenazas.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container" style="margin-bottom: 5%;">
+        <hr>
+        <div class="row">
+          <div class="col-md-9">
+            <h5>3. Resultado de Escaneo IP IPINFO.IO</h5>
+            <p>A continuación se consume un servicio de IPINFO <a href="https://ipinfo.io"><strong>https://ipinfo.io/ip/json</strong></a>
+              para encontrar locaciones de IPs</p>
+            Ips de ejemplo:
+            <ul>
+              <li>209.99.40.219</li>
+              <li>
+                78.138.126.220</li>
+              <li>
+                78.138.126.223</li>
+            </ul>
+            <form (ngSubmit)="verificarIP()">
+              <label for="ipInput" class="form-label">Ingrese una dirección IP:</label>
+              <div class="row">
+                <div class="col-9">
+                  <input type="text" id="ipInput" name="ipInput" [(ngModel)]="ipInput" class="form-control" required
+                    pattern="{{ ipv4Pattern }}">
+                </div>
+                <div class="col-3">
+                  <button type="submit" class="btn btn-warning">Verificar IP</button>
+                </div>
+              </div>
+            </form>
+            <div *ngIf="ipInfo" style="margin-top: 5%; margin-bottom: 5%;">
+              <h5>Resultado de la busqueda de Información de la IP:</h5>
+              <div class="card">
+                <div class="card-body">
+                  <p><strong>IP: </strong>{{ ipInfo.ip }}</p>
+                  <p><strong>City: </strong>{{ ipInfo.informacion.city }}</p>
+                  <p><strong>Country:</strong> {{ ipInfo.informacion.country }}</p>
+                  <p><strong>Hostname:</strong> {{ ipInfo.informacion.hostname }}</p>
+                  <p><strong>Location:</strong> {{ ipInfo.informacion.loc }}</p>
+                  <p><strong>Link Mapa: </strong> <a target="_blank" [href]="'https://maps.google.com/?q=' + ipInfo.informacion.loc">{{ 'https://maps.google.com/?q=' + ipInfo.informacion.loc }}</a></p>
+                  <p><strong>Organization:</strong> {{ ipInfo.informacion.org }}</p>
+                  <p><strong>Region:</strong> {{ ipInfo.informacion.region }}</p>
+                  <p><strong>Timezone:</strong> {{ ipInfo.informacion.timezone }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <ngx-spinner bdColor="rgba(0, 0, 0, 0.8)" size="medium" color="#fff" type="square-jelly-box" [fullScreen]="true">
+        <p style="color: white"> Procesando... </p>
+      </ngx-spinner>
+      <div class="container">
+        <hr>
+        <div class="row">
+          <div class="col-md-9">
+            <h5 class="card-title">4. Resultado de Escaneo DE IP VIRUS TOTAL</h5>
+            <p>A continuación se consume un servicio de VIRUS TOTAL. El api que usa consulta un REST de VIRUS TOTAL: <a
+                href="https://www.virustotal.com/api/v3/ip_addresses/"><strong>https://www.virustotal.com/api/v3/ip_addresses/</strong></a>
+              el cual genera un reporte general de la ip consultando distintas fuentes.</p>
+            Ips de ejemplo:
+            <ul>
+              <li>209.99.40.219</li>
+              <li>
+                78.138.126.220</li>
+              <li>
+                78.138.126.223</li>
+            </ul>
+            <form (ngSubmit)="verificarIP_VT()">
+              <div class="form-group">
+                <label for="ipInputVT">Ingrese una dirección IP:</label>
+              </div>
+              <div class="row">
+                <div class="col-9">
+                  <input type="text" class="form-control" id="ipInputVT" [(ngModel)]="ipInputVT" name="ipInputVT"
+                    required>
+                </div>
+                <div class="col-3">
+                  <button type="submit" class="btn btn-warning">Consultar IP</button>
+                </div>
+              </div>
+            </form>
+            <div *ngIf="ipInfoVT">
+              <div class="card" style="margin-top: 5%;">
+                <div class="card-body">
+                  <p><strong>IP Consultada:</strong> {{ ipInfoVT.data.id }}</p>
+                  <p><strong>Asociación propietaria:</strong> {{ ipInfoVT.data.attributes.as_owner }}</p>
+                  <p><strong>ASN:</strong> {{ ipInfoVT.data.attributes.asn }}</p>
+                  <p><strong>Continente:</strong> {{ ipInfoVT.data.attributes.continent }}</p>
+                  <p><strong>País:</strong> {{ ipInfoVT.data.attributes.country }}</p>
+                  <p><strong>Fecha del último análisis:</strong> {{
+                    convertUnixTimestamp(ipInfoVT.data.attributes.last_modification_date) | date }}</p>
+                  <p><strong>Red:</strong> {{ ipInfoVT.data.attributes.network }}</p>
+                  <p><strong>Registro regional de Internet: </strong>{{
+                    ipInfoVT.data.attributes.regional_internet_registry }}</p>
+                  <p><strong>Reputación: </strong> {{ ipInfoVT.data.attributes.reputation }}</p>
+                  <p><strong>Votos totales:</strong></p>
+                  <ul>
+                    <li>Harmless: {{ ipInfoVT.data.attributes.total_votes.harmless }}</li>
+                    <li style="color: red;">Malicious: {{ ipInfoVT.data.attributes.total_votes.malicious }}</li>
+                  </ul>
+                  <p><strong>Últimos resultados del análisis:</strong></p>
+                  <ul>
+                    <li *ngFor="let result of getLastAnalysisResults(ipInfoVT.data.attributes.last_analysis_results)">
+                      <strong>{{ result }}</strong>
+                      <br>
+                      <em>result: </em>{{ ipInfoVT.data.attributes.last_analysis_results[result].result }}
+                      | <em>method: </em>{{ ipInfoVT.data.attributes.last_analysis_results[result].method }}
+                      | <em>category: </em>{{ ipInfoVT.data.attributes.last_analysis_results[result].category }}
+                      | <em>engine_name: </em> {{ ipInfoVT.data.attributes.last_analysis_results[result].engine_name }}
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="container">
+        <hr>
+        <div class="row">
+          <div class="col-md-9">
+            <h5 class="card-title">Resultado de Escaneo ARCHIVO DE VARIAS IP VIRUS TOTAL</h5>
+            <p>A continuación se consume un servicio que recibe un archivo TXT con IPs en su interior y genera un reporte del resultado de la API de VIRUS TOTAL. El api que usa consulta un REST de VIRUS TOTAL: <a
+              href="https://www.virustotal.com/api/v3/ip_addresses/"><strong>https://www.virustotal.com/api/v3/ip_addresses/</strong></a>
+            el cual genera un reporte general de la ip consultando distintas fuentes.</p>
+            <div style="margin-top: 2%;margin-bottom: 2%;">
+              <button class="btn btn-secondary" (click)="generateTxtFile()">Descargar archivo txt de prueba</button>
+            </div>
+            <div class="row">
+              <div class="col-9">
+                <input type="file" (change)="onFileSelected($event)">
+              </div>
+              <div class="col-3">
+                <button class="btn btn-warning" (click)="processFile()">Procesar</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,104 @@
+<div class="row">
+    <div class="col-3"></div>
+    <div class="col-3"></div>
+    <div class="col-3" style="margin-top: 2%;">
+        <div class="row" style="margin-top: 2%;">
+            <button type="button" class="btn btn-warning" (click)="goToSignUpPage()">Registrar usuario</button>
+            <button type="button" class="btn btn-danger" (click)="goToHomeAuth()">Salir</button>
+        </div>
+    </div>
+</div>
+<div class="row" style="margin-top: 3%;margin-bottom: 3%;margin-left: 3%;margin-right: 3%;">
+    <h3>Listado de Usuarios Registrados</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>Usuario</th>
+                <th>Email</th>
+                <th>Rol</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td>{{ user.username }}</td>
+                <td>{{ user.email }}</td>
+                <td>{{ user.role }}</td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+<!-- <div class="row" style="margin-top: 3%;margin-bottom: 3%;margin-left: 3%;margin-right: 3%;">
+    <h3>Auditoria 1. Resultado de Amenazas Google Safe Browsing</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>IP</th>
+                <th>RESPUESTA</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr >
+                <td>IP</td>
+                <td>RESPUESTA</td>
+            </tr>
+        </tbody>
+    </table> 
+</div> -->
+
+<div class="row" style="margin-top: 3%;margin-bottom: 3%;margin-left: 3%;margin-right: 3%;">
+    <h3>Auditoria 2. Resultado de Escaneo Google Safe Browsing</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>IP</th>
+                <th>REQUEST</th>
+                <th>RESPONSE</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr >
+                <td>192.168.5.2</td>
+                <td>"url": "https://www.malwaredomainlist.com/"</td>
+                <td>"amenaza": ""
+                </td>
+            </tr>
+        </tbody>
+    </table> 
+</div>
+<div class="row" style="margin-top: 3%;margin-bottom: 3%;margin-left: 3%;margin-right: 3%;">
+    <h3>Auditoria 3. Resultado de Escaneo IP IPINFO.IO</h3>
+  
+    <table>
+        <thead>
+            <tr>
+                <th>IP</th>
+                <th>REQUEST</th>
+            </tr>
+        </thead>
+        <tbody>
+           
+            <tr >
+                <td>192.168.9.5</td>
+                <td>8.8.8.8</td>
+            </tr>
+        </tbody>
+    </table> 
+</div>
+<div class="row" style="margin-top: 3%;margin-bottom: 3%;margin-left: 3%;margin-right: 3%;">
+    <h3>Auditoria 4. Resultado de Escaneo DE IP VIRUS TOTAL</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>IP</th>
+                <th>REQUEST</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr >
+                <td>192.168.9.5</td>
+                <td>8.8.8.8</td>
+            </tr>
+        </tbody>
+    </table> 
+</div>
